@@ -10,7 +10,7 @@ timestamp: 2026-07-18T19:00:46Z
 
 How this app wires ESI specifics into the generic component, and how we migrate off
 `@stoplight/elements`. The renderer and the parser know nothing about ESI; **all** ESI knowledge lives
-in an app-owned adapter (the evolution of today's [src/components/esi/](../src/components/esi/)).
+in an app-owned adapter (the evolution of today's src/components/esi/).
 
 ## 8.1 The ESI spec, precisely
 
@@ -19,7 +19,7 @@ Confirmed by inspecting the live document (via the POC fixture and the app's loa
 - **URL:** `https://esi.evetech.net/meta/openapi.json` with an `X-Compatibility-Date` header (or
   `?compatibility_date=YYYY-MM-DD` on the public download links). Host varies by tier:
   `esi.evetech.net` (live), `esi-test.evetech.net`, `esi-dev.evetech.net`
-  ([src/lib/esi/util.ts](../src/lib/esi/util.ts)).
+  (src/lib/esi/util.ts).
 - **Version:** OpenAPI **3.1.0** — this is why the parser must handle 3.1 constructs
   ([03-parser-package.md](./03-parser-package.md#versions)).
 - **Size / shape:** ~203 paths, 313 component schemas, 36 tags, a single server
@@ -48,7 +48,7 @@ middlewares, each mapped to a renderer registered in the component's extension r
 
 Note the app is mid-refactor: it recently consolidated cache/rate-limit/scope/roles/pagination into a
 single `RouteDetails` "Details" table
-([route-details.tsx](../src/components/esi/api-spec/vendor/route-details.tsx)), keeping
+(route-details.tsx), keeping
 `x-required-scope` separate (it also drives the auth action), plus `x-overview` and
 `x-enum-descriptions`. The adapter carries these renderers over largely unchanged — they become
 `ExtensionComponents` entries instead of `renderExtensionAddon` output, and the **service-level**
@@ -68,7 +68,7 @@ Everything ESI, in one place. Each item maps a current mechanism to its island-s
 | **Vendor rendering** | `renderExtensionAddon` + `elements-core` patch | `extensions` registry (covers service level, no patch). |
 | **Search** | bespoke `SpotlightSearch` + `react-router` | built-in navigation search ([04](./04-renderer-component.md#navigation)). |
 | **Routing** | `StoplightRouter` shim + `react-router` | built-in hash deep linking (no router). |
-| **i18n** | `next-intl` `useTranslations` | `labels` dictionary built from `api-spec.*` keys in [en.json](../src/localization/en.json). |
+| **i18n** | `next-intl` `useTranslations` | `labels` dictionary built from `api-spec.*` keys in en.json. |
 | **Theme** | `theme.scss` Mantine/Mosaic bridge | `--oae-*` token block ([07](./07-styling-and-theming.md#77-how-the-esi-look-is-achieved)). |
 | **Overview panels / changelog** | `overview.tsx`, `changelog.tsx` (Mantine `ElementsPanel`) | `x-overview` extension renderer using the component's own panel primitives or app components. |
 
@@ -97,12 +97,12 @@ Incremental and low-risk. The generic packages can be built and proven before th
 - Visual review against the current page.
 
 ### Phase 3 — Cutover & cleanup
-- Flip the flag; delete [src/components/@stoplight/](../src/components/@stoplight/) (wrapper +
-  `theme.scss`), the [patches/](../patches/) for Stoplight, and remove `@stoplight/elements`,
+- Flip the flag; delete src/components/@stoplight/ (wrapper +
+  `theme.scss`), the patches/ for Stoplight, and remove `@stoplight/elements`,
   `@stoplight/elements-core`, `react-router`, `react-router-dom` from
-  [package.json](../package.json). Drop `patch-package` if nothing else needs it.
+  package.json. Drop `patch-package` if nothing else needs it.
 - The SDE pages that reuse `ElementsPanel`/`ElementsStack`/`ElementsWrapper`
-  ([src/components/sde/](../src/components/sde/)) are **unrelated to the spec renderer** — repoint them
+  (src/components/sde/) are **unrelated to the spec renderer** — repoint them
   at the component's own panel primitives or plain app components as a small follow-up; they do not
   block the ESI cutover.
 

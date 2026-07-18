@@ -14,13 +14,13 @@ The API Explorer page (`/api-explorer`) renders the ESI OpenAPI document through
 `@stoplight/elements` v9.0.4. The integration is not a thin dependency — it is a substantial
 abstraction layer plus a set of workarounds that reach into Elements' internals:
 
-- A wrapper layer in [src/components/@stoplight/elements/](../src/components/@stoplight/elements/)
+- A wrapper layer in src/components/@stoplight/elements/
   (`api.tsx`, `wrapper.tsx`, `theme.scss`, `panel.tsx`, `stack.tsx`).
-- The real consumer, [api-spec.tsx](../src/components/esi/api-spec/api-spec.tsx), which pre-processes
+- The real consumer, api-spec.tsx, which pre-processes
   the spec, injects a custom router and search, and feeds Elements an in-memory document.
 - ESI vendor-extension renderers in
-  [src/components/esi/api-spec/vendor/](../src/components/esi/api-spec/vendor/).
-- Three `patch-package` patches under [patches/](../patches/).
+  src/components/esi/api-spec/vendor/.
+- Three `patch-package` patches under patches/.
 
 It works. But the cost of keeping it working is high and rising, and an upcoming platform change
 (Astro) invalidates a core assumption it relies on.
@@ -42,7 +42,7 @@ install and silently rot on every upgrade.
 ### P2 — Authentication is injected through the DOM
 
 There is no supported way to hand Elements a bearer token, so the token is written directly into
-Stoplight's Try It input. [x-required-scope.tsx](../src/components/esi/api-spec/vendor/x-required-scope.tsx)
+Stoplight's Try It input. x-required-scope.tsx
 targets `[data-test="auth-try-it-row"] input[type="text"]`, waits for it with a `MutationObserver`,
 sets `input.value = 'Bearer …'`, and dispatches a synthetic `input` event so React notices. This is
 the single most fragile piece of the integration: it depends on Stoplight's private markup and
@@ -50,7 +50,7 @@ breaks on any DOM change in the library.
 
 ### P3 — A CSS override war against private class names
 
-[theme.scss](../src/components/@stoplight/elements/theme.scss) is ~350 lines scoped under
+theme.scss is ~350 lines scoped under
 `[data-wrapper='@stoplight/elements']`. It remaps Stoplight's HSL token system onto Mantine tokens,
 `@nested-import`s Stoplight's full stylesheet, re-colours code blocks with `!important`, and drives a
 sticky-sidebar scroll animation by targeting internal selectors: `.sl-elements`, `.sl-sticky`,
@@ -60,7 +60,7 @@ more. We do not control this DOM contract, so every upgrade risks silently break
 ### P4 — It cannot server-side render
 
 Elements relies on the DOM at module scope, so it is imported with `dynamic(…, { ssr: false })`
-([api.tsx:45-54](../src/components/@stoplight/elements/api.tsx#L45-L54)). The result is a mandatory
+(api.tsx:45-54). The result is a mandatory
 client-only load with a loading-overlay flash, and no server-rendered content for the docs — poor for
 first paint and for indexability of an API reference.
 
@@ -80,7 +80,7 @@ Mosaic, Mantine) to render one screen.
 ### P7 — The Astro Islands boundary breaks context sharing
 
 The current design leans on **host-provided React context**: the vendor renderers call
-`useCharacterAuth()` and `useAccessRequestModal()`, [api-spec.tsx](../src/components/esi/api-spec/api-spec.tsx)
+`useCharacterAuth()` and `useAccessRequestModal()`, api-spec.tsx
 uses `next-intl`'s `useTranslations`, Mantine components read the Mantine provider, and the spec is
 supplied through an `ApiSpecProvider` context. Under Astro's Islands architecture, **React context
 does not cross the island boundary**. An interactive island can provide and consume its *own* context
@@ -163,4 +163,4 @@ The work is done when:
 
 > **Note on scope:** open-sourcing became a firm requirement during review, which added the
 > accessibility, resilience, security, testing, and release-engineering requirements now captured in
-> docs `09`–`12`. The review dialogue that produced them is in [notes/](./notes/).
+> docs `09`–`12`. The review dialogue that produced them is in [notes/](./notes/README.md).

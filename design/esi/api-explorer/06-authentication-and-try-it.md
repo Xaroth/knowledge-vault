@@ -14,7 +14,7 @@ from a DOM hack (pain point **P2**) into a first-class, typed, island-safe input
 ## 6.1 The problem being solved
 
 Today, a logged-in character's token reaches ESI Try It calls by **writing into Stoplight's DOM**.
-[x-required-scope.tsx](../src/components/esi/api-spec/vendor/x-required-scope.tsx):
+x-required-scope.tsx:
 
 - selects `[data-test="auth-try-it-row"] input[type="text"]`,
 - waits for it with a `MutationObserver` (10s timeout),
@@ -54,7 +54,7 @@ type Fetcher = (request: Request) => Promise<Response>
 2. The component maps the operation's effective security to the matching `AuthConfig.schemes` entry and
    **applies it to the outgoing `Request`** — bearer/api-key/basic handled natively, exactly as the
    POC's
-   [`tryItAuth.ts`](../../../xaroth/esi-explorer/packages/@xaroth/esi-explorer/src/utils/tryItAuth.ts)
+   `tryItAuth.ts`
    derives auth from `security` + `securitySchemes`. Simple hosts stop here — no `fetcher` needed.
 3. The component calls **`fetcher(request)`** (default `fetch`). A host that needs more can read/clone
    the `Request`, inject a *fresh* token, rewrite the URL to a proxy, sign it, or route it anywhere —
@@ -70,7 +70,7 @@ expire; the host refreshes ~60s before expiry).
 ## 6.3 The scope / access-request flow
 
 ESI operations require specific scopes. Today the flow is: derive `x-required-scope` from the
-operation's `security` (in [middlewares.ts](../src/components/esi/providers/middlewares.ts)), render
+operation's `security` (in middlewares.ts), render
 an "Authentication" section, and open the host's access-request modal via `useAccessRequestModal()`.
 
 Island-safe replacement:
@@ -90,7 +90,7 @@ become two props (`auth`, `onRequestScopes`).
 ## 6.4 The Try It request builder
 
 Ported from the POC, which is already solid
-([`TryItPanel.tsx`](../../../xaroth/esi-explorer/packages/@xaroth/esi-explorer/src/components/TryItPanel/TryItPanel.tsx)
+(`TryItPanel.tsx`
 and `src/utils/`):
 
 - **Fields** for path/query/header params (enum-aware selects), a server selector (from `servers`),

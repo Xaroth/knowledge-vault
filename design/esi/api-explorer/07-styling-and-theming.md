@@ -14,7 +14,7 @@ UI kit and leaks no styles. This replaces the current ~350-line override war (pa
 
 ## 7.1 What we are replacing
 
-Today's [theme.scss](../src/components/@stoplight/elements/theme.scss) exists only to make a
+Today's theme.scss exists only to make a
 third-party component look like ours:
 
 - It remaps Stoplight's HSL token system onto Mantine tokens.
@@ -22,7 +22,7 @@ third-party component look like ours:
 - It re-colours code blocks with `!important`.
 - It drives a sticky-sidebar scroll animation by targeting private selectors (`.sl-elements`,
   `.sl-sticky`, `.sl-bg-canvas`, `[data-testid='two-column-right']`, `.sl-stack--{i}`, …).
-- [wrapper.tsx](../src/components/@stoplight/elements/wrapper.tsx) injects a script to prime
+- wrapper.tsx injects a script to prime
   `localStorage['mosaic-theme']` so Mosaic's theme detection does not fight the app.
 
 None of this is our styling — it is us fighting someone else's. When we own the component, the styling
@@ -109,7 +109,7 @@ anything else is host-defined.
 - **No UI-kit dependency.** No Mantine, no Mosaic. The few interactive primitives it needs
   (collapse, tabs, tooltip, copy button) are small, purpose-built, and styled with tokens — so the
   component works identically whether or not the host uses Mantine. (Contrast the current
-  [panel.tsx](../src/components/@stoplight/elements/panel.tsx), which is Mantine-based.)
+  panel.tsx, which is Mantine-based.)
 - **Responsive by default.** The sidebar/stacked layout adapts at a breakpoint internally; there is no
   separate "responsive" mode to configure.
 - **No scroll-timeline hacks against foreign DOM.** Sticky positioning is expressed against the

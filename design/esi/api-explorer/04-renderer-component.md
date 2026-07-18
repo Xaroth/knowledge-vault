@@ -11,7 +11,7 @@ timestamp: 2026-07-18T19:00:46Z
 A single self-contained React component, `<ApiExplorer>`, that renders a `NormalizedSpec`. Generic
 (no ESI knowledge), self-styled, island-safe, and overridable at every visual seam. This is a
 generalisation of the POC's
-[`@xaroth/esi-explorer`](../../../xaroth/esi-explorer/packages/@xaroth/esi-explorer).
+`@xaroth/esi-explorer`.
 
 ## 4.1 The public API
 
@@ -213,7 +213,7 @@ in-component navigation and search.
 ## 4.7 Mapping from Elements' props {#vs-elements}
 
 For reviewers who know today's surface. Left: what
-[api.tsx](../src/components/@stoplight/elements/api.tsx) forwards to Elements. Right: our equivalent.
+api.tsx forwards to Elements. Right: our equivalent.
 
 | Elements prop | Our equivalent | Notes |
 | --- | --- | --- |
@@ -239,7 +239,7 @@ Net effect: a **smaller, clearer** surface — the dead props are gone, the frag
 complete English defaults (`defaultLabels`, itself a public export). The host maps its own i18n
 (`next-intl` today) into this object *before* rendering, so the component needs no i18n provider and
 stays island-safe (pain point **P7**). The ESI adapter builds this from the existing `api-spec.*` keys
-in [en.json](../src/localization/en.json).
+in en.json.
 
 Decisions from review ([notes A13](./notes/01-architect-round1.md)):
 

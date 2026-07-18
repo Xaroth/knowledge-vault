@@ -9,7 +9,7 @@ timestamp: 2026-07-18T19:00:46Z
 # 9. Quality Attributes & Resilience
 
 Cross-cutting requirements that apply to the whole renderer, with concrete acceptance criteria. These
-came out of the review rounds ([notes/](./notes/)) and are non-optional: for an open-source component,
+came out of the review rounds ([notes/](./notes/README.md)) and are non-optional: for an open-source component,
 these are what separate "renders our spec" from "trustworthy library."
 
 ## 9.1 Accessibility {#accessibility}

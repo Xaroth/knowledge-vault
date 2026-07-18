@@ -8,7 +8,7 @@ timestamp: 2026-07-18T19:00:46Z
 
 # Review Notes
 
-This directory captures the **design-review dialogue** behind the plan in [../](../). It exists so the
+This directory captures the **design-review dialogue** behind the plan in [../](../README.md). It exists so the
 reasoning is followable, not just the conclusions. The main docs (`01`–`12`) hold the *resolved*
 design; these notes hold the *argument* that got them there.
 

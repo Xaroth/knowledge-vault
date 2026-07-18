@@ -27,7 +27,7 @@ context across the page.
 
 Rather than keep patching a black box, we build a component that we own, tailored to our needs, with
 a clean extension surface. A working proof of concept — the
-[ESI Explorer](../../../xaroth/esi-explorer) — already validates the core of this approach and is
+ESI Explorer — already validates the core of this approach and is
 referenced throughout.
 
 ## The shape of the solution
@@ -76,7 +76,7 @@ component's documented extension points. The renderer itself knows nothing about
 ### Design-review dialogue
 
 The plan was reviewed adversarially (lead architect → lead engineer → lead architect). The reasoning
-— every criticism, rebuttal, and concession — is recorded in **[notes/](./notes/)**, and the resolved
+— every criticism, rebuttal, and concession — is recorded in **[notes/](./notes/README.md)**, and the resolved
 decisions are folded into docs `03`–`12`. Start at [notes/README.md](./notes/README.md) to follow the
 trains of thought, including the two [open decisions](./11-open-source-and-api-stability.md#decisions-needed)
 (package naming and governance) that need a human owner.

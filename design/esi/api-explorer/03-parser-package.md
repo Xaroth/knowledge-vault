@@ -10,7 +10,7 @@ timestamp: 2026-07-18T19:00:46Z
 
 A framework-agnostic package that turns an OpenAPI 3.0/3.1 document into a stable, UI-friendly
 **normalized model**. No React, no DOM. This is a hardened generalisation of the POC's
-[`@xaroth/openapi-parser`](../../../xaroth/esi-explorer/packages/@xaroth/openapi-parser).
+`@xaroth/openapi-parser`.
 
 ## 3.1 Responsibilities
 
@@ -53,8 +53,8 @@ The normalizer later compares each dereferenced node against its pre-dereference
 **re-attaches `$ref`** where the original was a reference, and recovers `x-*` from the original.
 
 This is the POC's central architectural cleverness
-([`original-spec-snapshot.ts`](../../../xaroth/esi-explorer/packages/@xaroth/openapi-parser/src/original-spec-snapshot.ts),
-[`normalize-schema.ts`](../../../xaroth/esi-explorer/packages/@xaroth/openapi-parser/src/normalize-schema.ts)),
+(`original-spec-snapshot.ts`,
+`normalize-schema.ts`),
 and it is worth preserving verbatim.
 
 ### Contrast with Stoplight
@@ -73,7 +73,7 @@ surface ([11](./11-open-source-and-api-stability.md#model-version)): any change 
 pre-built model is detected rather than crashing the renderer.
 
 (Shapes follow the POC's
-[`types.ts`](../../../xaroth/esi-explorer/packages/@xaroth/openapi-parser/src/types.ts); extension
+`types.ts`; extension
 notes for 3.1 are called out in [§3.5](#versions).)
 
 ```ts
@@ -146,7 +146,7 @@ Design properties worth keeping:
 
 ## 3.4 Public API
 
-Mirrors the POC's [`index.ts`](../../../xaroth/esi-explorer/packages/@xaroth/openapi-parser/src/index.ts):
+Mirrors the POC's `index.ts`:
 
 ```ts
 // Loading / normalizing
@@ -193,7 +193,7 @@ fixture and several smaller ones).
 
 ## 3.6 Load policy & security {#security}
 
-Ported from the POC's [`load-policy.ts`](../../../xaroth/esi-explorer/packages/@xaroth/openapi-parser/src/load-policy.ts).
+Ported from the POC's `load-policy.ts`.
 `trustMode: 'trusted' | 'untrusted'`:
 
 - **trusted** (our own ESI host): normal fetching and external `$ref` resolution.

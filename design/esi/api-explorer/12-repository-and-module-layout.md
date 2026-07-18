@@ -9,7 +9,7 @@ timestamp: 2026-07-18T19:00:46Z
 # 12. Repository & Module Layout
 
 The concrete structure a medior engineer starts from. It mirrors the
-[ESI Explorer POC](../../../xaroth/esi-explorer), which already has a clean, proven layout — this is
+ESI Explorer POC, which already has a clean, proven layout — this is
 that structure, generalised and with the review's additions folded in.
 
 ## 12.1 Monorepo

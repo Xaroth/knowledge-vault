@@ -47,7 +47,7 @@ The dependency direction is strictly one-way: **adapter → explorer → model**
 imports React; the explorer never imports the parser's raw OpenAPI handling at render time (it
 consumes the normalized model); neither package knows anything about ESI.
 
-This is the same clean separation the [ESI Explorer POC](../../../xaroth/esi-explorer) already proves,
+This is the same clean separation the ESI Explorer POC already proves,
 generalised and hardened.
 
 ## 2.2 Why two packages
@@ -79,7 +79,7 @@ Neither package name contains "eve" or "esi" beyond the scope — the scope sign
 package names stay generic so the components read as a general-purpose OpenAPI toolkit.
 
 The **ESI adapter is not a package** — it is a folder in this app (evolved from today's
-[src/components/esi/](../src/components/esi/)). It is the only place ESI knowledge lives.
+src/components/esi/). It is the only place ESI knowledge lives.
 
 ## 2.4 The Islands / self-containment constraint {#islands}
 
