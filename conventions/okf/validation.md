@@ -1,56 +1,51 @@
 ---
 type: Reference
 title: Validating OKF conformance
-description: How to run the deterministic OKF v0.1 conformance checker vendored in this repository, and how to read its output.
+description: How to validate OKF v0.1 conformance in this vault with `speki okf validate`, and how to read its findings.
 tags: [okf, convention, validation, tooling]
-timestamp: 2026-07-14T09:03:21Z
+timestamp: 2026-07-18T19:30:10Z
 ---
 
 # Overview
 
-Conformance with the [OKF v0.1 spec](./spec.md) is checked
-by a deterministic Python script — never by eyeballing. The checker lives
-at [scripts/okf_validate.py](./scripts/okf_validate.py) and
-implements the §9 rules verbatim.
+Conformance with the [OKF v0.1 spec](./spec.md) is checked deterministically by
+`speki` — never by eyeballing. `speki okf validate` implements the format rules
+speki enforces (`speki okf spec` prints them). [Using speki](./speki.md) covers
+the surrounding read/edit/commit workflow.
 
 # Running it
 
-Run it against the bundle you want to check (the repository root is itself
-the bundle):
+Validate a vault by name:
 
 ```bash
-uv run conventions/okf/scripts/okf_validate.py . --strict
+speki okf validate --name <vault>
 ```
 
-If `uv` is unavailable, fall back to pip + python:
-
-```bash
-python3 -m pip install --quiet pyyaml && \
-python3 conventions/okf/scripts/okf_validate.py . --strict
-```
-
-Add `--json` for machine-readable output (useful in CI). Point the first
-argument at any subdirectory to validate just that scope.
+Add `-o json` for a machine-readable `{ok, errors, warnings}` envelope (useful in
+CI). `speki submit` runs the same validation before it commits, so a standalone
+`speki okf validate` is an optional pre-check, not a separate gate.
 
 # Interpreting the result
 
-- **ERROR** → a hard §9 conformance failure: no parseable frontmatter, or a
-  missing/empty `type`. The bundle is non-conformant. Fix every one.
-- **warn** → soft guidance: a missing recommended field, a non-ISO log
-  date, or a broken cross-link. Never blocks; broken links in particular
-  are explicitly tolerated by the spec (§5.3). Fix when cheap.
+- **error** (`E*`) → a hard conformance failure; the bundle is non-conformant.
+  Fix every one — `submit` refuses while any remain.
+- **warning** (`W*`) → soft guidance: a missing recommended field, a non-explicit
+  or broken link, a tag problem. Warnings never block a submit; fix them when
+  cheap. Broken intra-bundle links in particular are explicitly tolerated by the
+  spec (§5.3) as not-yet-written knowledge.
 
-The exit code is non-zero if any error is present, or — with `--strict` —
-if any warning is present. That makes `--strict` the right mode for a CI
-gate and for finishing any pass over the bundle.
+With `-o json`, the result reports `"ok": true` when there are no errors,
+regardless of warnings.
 
 # What it checks
 
-| Rule | Severity | Source |
-|------|----------|--------|
-| Non-reserved `.md` has parseable YAML frontmatter | ERROR | §9.1 |
-| Frontmatter has a non-empty `type` | ERROR | §9.2 |
-| Recommended field (`title`, `description`, `tags`, `timestamp`) present | warn | §4.1 |
-| `index.md` carries no frontmatter (root may carry only `okf_version`) | warn | §6 / §11 |
-| `log.md` date headings are ISO 8601 `YYYY-MM-DD` | warn | §7 |
-| Bundle-internal cross-links resolve | warn | §5.3 |
+| Code | Severity | Rule |
+|------|----------|------|
+| `E1` | error   | A file cannot be read, or a concept file has missing/malformed YAML frontmatter. |
+| `E2` | error   | Concept frontmatter is missing the required `type` field. |
+| `E3` | error   | A nested `index.md` contains frontmatter (not permitted; the bundle-root `index.md` may carry only `okf_version`). |
+| `W1` | warning | A recommended frontmatter field (`title` or `description`) is missing. |
+| `W2` | warning | A relative link lacks a `./` or `../` prefix. |
+| `W3` | warning | An intra-bundle link points at a target that does not exist on disk. |
+| `W4` | warning | A non-empty `log.md` has no ISO 8601 date headings. |
+| `W5` | warning | A concept file has a blank tag, or two tags that collide after normalization. |
