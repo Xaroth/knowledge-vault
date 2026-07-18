@@ -6,6 +6,10 @@ describes intended shape and [Project](../project/index.md) describes what a fea
 *is* for a mixed audience, engineering pages carry the mechanics a developer needs
 to build against or extend a system.
 
+# Conventions
+
+* [Engineering conventions](./conventions/index.md) - working standards for code and repositories, such as how commit messages are written.
+
 # Areas
 
 * [EVE Online](./eve-online/index.md) - the game's client-facing systems as seen by third-party tooling: how the client distributes its assets, and the tools that consume that distribution.
