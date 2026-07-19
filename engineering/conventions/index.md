@@ -6,3 +6,4 @@ engineering work against. Distinct from the vault's own
 is written.
 
 * [Semantic commit messages](./semantic-commit-messages.md) - the Conventional Commits grammar every commit subject follows: a typed, optionally scoped, present-tense subject with breaking-change markers and a PR suffix.
+* [Idiomatic Go](./golang.md) - the Go conventions we write and review against: package layout, discovered interfaces, errors as values, concurrency, table-driven tests, and current standard-library idioms.
