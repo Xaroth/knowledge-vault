@@ -45,6 +45,12 @@ is the *plan*, not the code.
   (`x-internal`/`x-hidden`/`deprecated` all absent); the `hideInternal` operation-filtering
   feature stays out of scope. (Side-note: live spec uses `x-required-roles`, design says
   `x-required-scope` — reconcile when planning the adapter's extension registry.)
+- [Decomposition strategy & ticket granularity](./issues/01-decomposition-strategy.md) —
+  units follow the design's **module/component** structure, ~**1 PR** each with
+  **digestibility** as the governing rule; oversized units split **by behavior/concern**;
+  **walking-skeleton** unit per seam early; **spikes are separate units** from build units;
+  the **ESI adapter splits** into sub-units; the **playground is decoupled** to a
+  demand-driven stakeholder-update track (CI rides on tests + fixtures).
 
 ## Not yet specified
 

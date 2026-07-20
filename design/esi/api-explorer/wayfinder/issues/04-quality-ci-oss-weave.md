@@ -23,3 +23,14 @@ Per-ticket definition-of-done woven into each buildable unit, standalone tickets
 This determines whether quality is a gate on every ticket or scheduled as separate work, and
 where the `data-oae-*` DOM contract, the a11y APG patterns, the XSS rules, and the CI budget
 gates land in the sequence.
+
+## Input from decomposition strategy (ticket 01)
+
+The [decomposition decision](./01-decomposition-strategy.md) **decoupled the playground** from
+the build's inner loop: it becomes a demand-driven stakeholder-update vehicle, not a DoD hook
+and not a standing CI harness. So this ticket must decide what the CI smoke/typecheck gate
+runs against instead — the working assumption is the **test suite + real-spec fixtures**
+([../../10](../../10-testing-and-tooling.md#102)), with playground smoketests as a secondary
+check only. This diverges from the design's "playground as CI harness"
+([../../12](../../12-repository-and-module-layout.md#124),
+[../../10](../../10-testing-and-tooling.md#105)); reconcile the CI-gate definition accordingly.
