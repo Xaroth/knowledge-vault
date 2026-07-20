@@ -36,6 +36,10 @@ is the *plan*, not the code.
 - **Deliverable override.** This map's destination is a deliverable spec, so *assembling the
   plan document* is in scope as the final step — an intentional override of wayfinder's
   plan-don't-do default (see Not yet specified).
+- **POC is a reference, not proven code.** The ESI Explorer POC is an extremely rough draft;
+  every assertion it makes (the snapshot technique, the "tested" serializer, the look-and-feel)
+  is **validated before entering the product**. A DoD obligation on every unit that reuses POC
+  work.
 
 ## Decisions so far
 
@@ -57,12 +61,18 @@ is the *plan*, not the code.
   on the seam**, parallel to renderer breadth; **everything built in isolation**, then
   **A/B-flagged side-by-side → parity gate → flip → soak → tear down old**. **Island-safety is
   a day-one invariant**; **Astro host-wrapper integration ruled out of scope**.
+- [Spike inventory & exit gates](./issues/03-spike-inventory-and-gates.md) — **exactly one
+  spike**: the bounded, time-boxed **schema-normalization spike** (3.1 convergence +
+  snapshot-preservation + `allOf`-merge shape → locks the `NormalizedSpec` shape), with a
+  split-valve for `allOf`. Everything else is a **build unit with a validation DoD** (Try It
+  serializer, full `allOf`) or a **gate** (island mount; perf budget → ticket 04). Surfaced a
+  new prototype ticket on ESI-scale look-and-feel.
 
 ## Not yet specified
 
 - **Assemble the build-plan document** from the accumulated decisions. Graduates to a ticket
-  once decomposition, build-order, spikes, quality-weave, and sizing are decided — its shape
-  depends on those answers.
+  once decomposition, build-order, spikes, quality-weave, sizing, **and the ESI-scale
+  look-and-feel prototype** are decided — its shape depends on those answers.
 - **Publish-gating owner decisions** — governance/ownership and license
   ([../11](../11-open-source-and-api-stability.md#decisions-needed)). Needed before the first
   public release; ride along as blockers to the *publish* step, not the build. Graduate only
