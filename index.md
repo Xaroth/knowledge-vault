@@ -18,4 +18,5 @@ changed what, when, and why. Never drive the vault with raw git — see
 * [Conventions](./conventions/index.md) - the OKF format and authoring standards this vault follows, plus how to use speki.
 * [Design](./design/index.md) - design documentation for systems and components, describing their intended shape.
 * [Engineering](./engineering/index.md) - deep implementation knowledge: how systems are built, the formats they read and write, and the tools that work against them.
+* [Learning](./learning/index.md) - structured self-study: missions, resources, lessons, and learning records for skills being deliberately acquired.
 * [Project](./project/index.md) - product-level knowledge about features and initiatives.

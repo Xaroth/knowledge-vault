@@ -1,0 +1,229 @@
+/*
+ * Shared stylesheet for the Lead Engineer learning track.
+ * Tufte-inspired: generous margins, readable serif body, restrained palette.
+ * Every lesson links this so the track reads as one course.
+ * Reused by: all lessons under ../lessons/.
+ */
+
+:root {
+  --ink: #1a1a1a;
+  --paper: #fffff8;
+  --muted: #6b6b63;
+  --rule: #d8d8cf;
+  --accent: #7a1f0f;      /* deep brick red, used sparingly */
+  --accent-soft: #f3e6e0;
+  --ok: #1f6b3a;
+  --ok-soft: #e4f0e8;
+  --no: #8a1c1c;
+  --no-soft: #f6e2e2;
+  --maxw: 42rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8e6dd;
+    --paper: #14140f;
+    --muted: #9a978c;
+    --rule: #33332b;
+    --accent: #e0947f;
+    --accent-soft: #2a1a14;
+    --ok: #7fd0a0;
+    --ok-soft: #16241b;
+    --no: #e59a9a;
+    --no-soft: #2a1616;
+  }
+}
+
+* { box-sizing: border-box; }
+
+html { font-size: 18px; }
+
+body {
+  margin: 0 auto;
+  max-width: var(--maxw);
+  padding: 4rem 1.4rem 8rem;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: Palatino, "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Masthead */
+.eyebrow {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 0.6rem;
+}
+h1 {
+  font-weight: 600;
+  font-size: 2.1rem;
+  line-height: 1.1;
+  margin: 0 0 0.4rem;
+}
+.dek {
+  font-style: italic;
+  color: var(--muted);
+  font-size: 1.15rem;
+  margin: 0 0 2.2rem;
+}
+
+h2 {
+  font-weight: 600;
+  font-size: 1.35rem;
+  margin: 2.6rem 0 0.8rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+h3 { font-weight: 600; font-size: 1.08rem; margin: 1.6rem 0 0.4rem; }
+
+p { margin: 0 0 1rem; }
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+strong { font-weight: 600; }
+
+blockquote {
+  margin: 1.4rem 0;
+  padding: 0.2rem 0 0.2rem 1.2rem;
+  border-left: 3px solid var(--accent);
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* Sidenote-ish callout */
+.callout {
+  background: var(--accent-soft);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  margin: 1.6rem 0;
+  font-size: 0.96rem;
+}
+.callout .label {
+  font-family: system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+/* Archetype / definition cards */
+.grid { display: grid; gap: 0.9rem; margin: 1.4rem 0; }
+@media (min-width: 34rem) { .grid.two { grid-template-columns: 1fr 1fr; } }
+.card {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.9rem 1.1rem;
+}
+.card h3 { margin: 0 0 0.3rem; color: var(--accent); }
+.card p { margin: 0; font-size: 0.95rem; }
+
+/* Quiz widget */
+.quiz {
+  border: 1px solid var(--rule);
+  border-radius: 8px;
+  padding: 1.2rem 1.3rem;
+  margin: 1.6rem 0;
+  background: color-mix(in srgb, var(--paper) 92%, var(--ink) 8%);
+}
+.quiz .q {
+  font-weight: 600;
+  font-family: system-ui, sans-serif;
+  font-size: 1rem;
+  margin-bottom: 0.9rem;
+}
+.quiz .opts { display: grid; gap: 0.5rem; }
+.quiz button.opt {
+  text-align: left;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background 0.12s, border-color 0.12s;
+}
+.quiz button.opt:hover { border-color: var(--accent); }
+.quiz button.opt.correct { background: var(--ok-soft); border-color: var(--ok); }
+.quiz button.opt.wrong { background: var(--no-soft); border-color: var(--no); }
+.quiz button.opt:disabled { cursor: default; }
+.quiz .fb {
+  margin-top: 0.9rem;
+  font-size: 0.92rem;
+  min-height: 1.2rem;
+}
+.quiz .fb.show-ok { color: var(--ok); }
+.quiz .fb.show-no { color: var(--no); }
+
+/* Recall prompt (free text; self-graded reveal) */
+.recall {
+  border: 1px dashed var(--rule);
+  border-radius: 8px;
+  padding: 1.2rem 1.3rem;
+  margin: 1.6rem 0;
+}
+.recall .q { font-weight: 600; font-family: system-ui, sans-serif; margin-bottom: 0.7rem; }
+.recall textarea {
+  width: 100%;
+  min-height: 4.5rem;
+  font: inherit;
+  font-size: 0.95rem;
+  padding: 0.6rem;
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  background: var(--paper);
+  color: var(--ink);
+  resize: vertical;
+}
+.recall button.reveal {
+  margin-top: 0.7rem;
+  font: inherit;
+  font-family: system-ui, sans-serif;
+  font-size: 0.85rem;
+  padding: 0.45rem 0.9rem;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--accent);
+  cursor: pointer;
+}
+.recall .answer { margin-top: 0.8rem; display: none; }
+.recall .answer.show { display: block; }
+
+/* Footer / nav */
+.refs { font-size: 0.9rem; }
+.refs li { margin-bottom: 0.4rem; }
+.nav {
+  margin-top: 3rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+  font-family: system-ui, sans-serif;
+  font-size: 0.9rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.4rem;
+}
+.ask {
+  margin-top: 2.4rem;
+  background: var(--accent-soft);
+  border-radius: 8px;
+  padding: 1.1rem 1.3rem;
+  font-size: 0.96rem;
+}
+.ask .label {
+  font-family: system-ui, sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: block;
+  margin-bottom: 0.3rem;
+}
+sup.cite { font-size: 0.7rem; }
+sup.cite a { text-decoration: none; }
