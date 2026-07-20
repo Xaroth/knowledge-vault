@@ -9,7 +9,7 @@ timestamp: 2026-07-20T00:00:00Z
 # Spike inventory & exit gates
 
 - **Type:** grilling
-- **Status:** open
+- **Status:** claimed
 - **Blocked by:** —
 
 ## Question
