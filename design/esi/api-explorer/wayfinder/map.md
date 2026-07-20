@@ -51,6 +51,12 @@ is the *plan*, not the code.
   **walking-skeleton** unit per seam early; **spikes are separate units** from build units;
   the **ESI adapter splits** into sub-units; the **playground is decoupled** to a
   demand-driven stakeholder-update track (CI rides on tests + fixtures).
+- [Build order & dependency backbone](./issues/02-build-order-and-dependencies.md) — a neutral
+  **dependency DAG**; front bottleneck **3.1 spike → draft `NormalizedSpec` → walking skeleton
+  → freeze**, then **parser ‖ renderer breadth** against the frozen contract; **adapter opens
+  on the seam**, parallel to renderer breadth; **everything built in isolation**, then
+  **A/B-flagged side-by-side → parity gate → flip → soak → tear down old**. **Island-safety is
+  a day-one invariant**; **Astro host-wrapper integration ruled out of scope**.
 
 ## Not yet specified
 
@@ -73,3 +79,8 @@ is the *plan*, not the code.
 - **The first public open-source release** — the publish/launch act and its governance +
   license sign-off. A separate launch effort; this plan gets the packages build- and
   publish-*ready*, not published.
+- **Astro host-wrapper integration** — mounting the component as an Astro island in the real
+  app ([../08 Phase 4](../08-esi-integration-and-migration.md#84)). The Astro rewrite lands
+  *after* the API Explorer rework, so it is a separate later effort; this plan keeps the
+  island-safe self-containment invariant that makes it cheap. Ruled out by
+  [Build order & dependency backbone](./issues/02-build-order-and-dependencies.md).
