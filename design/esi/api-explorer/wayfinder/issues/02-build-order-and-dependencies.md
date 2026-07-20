@@ -9,7 +9,7 @@ timestamp: 2026-07-20T00:00:00Z
 # Build order & dependency backbone
 
 - **Type:** grilling
-- **Status:** open
+- **Status:** claimed
 - **Blocked by:** 01
 
 ## Question
