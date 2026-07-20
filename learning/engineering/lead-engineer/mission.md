@@ -52,12 +52,22 @@ All four dimensions are in scope, because a lead is expected across all of them:
 
 # Working assumptions (confirm or correct)
 
-* The target level is a **tech-lead / staff-equivalent** role at my current
+* The target level is a **lead engineer** role at my current
   employer, on a technical (not people-management) track.
 * No fixed deadline yet; the aim is steady, evidenced growth toward the next
   promotion cycle.
 * My current day-to-day is hands-on software engineering, so lessons should connect
   leadership ideas back to concrete engineering work rather than abstract theory.
+* I am a self-taught engineer. I have some formal training in software engineering, but most of my skills have been learned on the job.
+  I am comfortable with self-directed learning and reflection.
+* My company operates within the games industry, I am part of a small team aimed at shipping a single product, and I am part of a slightly
+  larger team aimed at shipping a single product that affects multiple other products. I am not a manager, but I have some influence over the work of others.
+* My segment is a cross-product segment (websites, launcher, API), so our workload is dependent on the work of other teams, and we have to
+  often coordinate with them to ship our work.
+* My segment currently has a lead engineer, however, I feel that I am better suited for the role, and I want to demonstrate that I can operate
+  at that level. This also means that there might be some friction between me and the current lead engineer, and I want to be able to navigate
+  that friction in a professional manner. I currently have a good relationship with the lead engineer, and I want to maintain that 
+  relationship while also demonstrating my capabilities.
 
 > These assumptions shape which lessons come next. If any are wrong, tell your
 > teacher and this mission (and a learning record) will be updated.
