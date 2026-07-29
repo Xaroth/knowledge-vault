@@ -5,11 +5,4 @@ as it is designed, before or during its build. Pages here describe the design in
 the present tense, per
 [describe the present, not the change](../conventions/describe-current-state.md).
 
-# ESI
-
-* [API Explorer](./esi/api-explorer/README.md) - design for a home-grown, self-contained OpenAPI 3.0/3.1 renderer to replace `@stoplight/elements`: a two-package split (parser + renderer), an Astro-islands-safe component, and the adversarial design review behind it.
-* [developers.eveonline.com Rework](./esi/developers.eveonline.com/README.md) - re-platform of the EVE developer portal onto a two-repo Astro architecture (public content + private styled site), unifying the split Next.js/MkDocs stacks, keeping licensed assets and infrastructure private while docs stay open and community-contributable.
-
-# Speki
-
-* [Agent Interface & Vault Search](./speki/agent-interface-and-search/README.md) - how speki (the CLI that manages these vaults) should talk to AI agents and index large knowledge bases: keep the CLI as the sole mutation path plus an Agent Skill guidance layer (not an MCP server), and add a persistent pure-Go BM25 + frontmatter-filter search index (tags become filters, vectors optional), with the research and decisions behind both.
+No designs are currently documented.
