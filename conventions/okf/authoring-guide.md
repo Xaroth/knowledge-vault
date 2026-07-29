@@ -3,7 +3,7 @@ type: Guide
 title: Authoring OKF knowledge
 description: The working know-how for writing OKF in this repository — the one hard rule, the conventions to apply, the knowledge lifecycle, and copy-paste templates.
 tags: [okf, convention, guide, authoring]
-timestamp: 2026-07-14T09:03:21Z
+timestamp: 2026-07-29T20:49:13Z
 ---
 
 # Overview
@@ -31,7 +31,9 @@ bundle over them.
 - **Frontmatter:** `type` is required. Add `title`, `description`, `tags`,
   `timestamp` (ISO 8601) when they aid consumption; add `resource` (a
   canonical URI) only for concepts bound to a real asset — omit it for
-  abstract concepts.
+  abstract concepts. Reuse a `type` and tags the vault already uses —
+  `speki search --vocabulary` lists them — rather than coining
+  near-duplicates; tags are the main way a page is found.
 - **Body:** prefer structural markdown (headings, tables, lists, fenced
   code). Conventional headings: `# Schema`, `# Examples`, `# Citations`.
 - **Cross-links:** standard markdown links in **relative** form, always
